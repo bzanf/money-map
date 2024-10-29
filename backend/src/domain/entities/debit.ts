@@ -1,4 +1,6 @@
-class Debit extends Transaction {
+import { Transaction } from "./transaction";
+
+export class Debit extends Transaction {
     private _status: DebitStatus;
 
     constructor(name: string, value: number, status: DebitStatus) {

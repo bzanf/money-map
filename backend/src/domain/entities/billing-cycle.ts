@@ -1,4 +1,7 @@
-class BillingCycle {
+import { Credit } from "./credit";
+import { Debit } from "./debit";
+
+export class BillingCycle {
     private _name: String;
     private _month: number;
     private _year: number;

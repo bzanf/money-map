@@ -1,5 +1,5 @@
-class Transaction {
-    private _name: String;
+export class Transaction {
+    private _name: string;
     private _value: number;
 
     constructor(name: string, value: number) {
