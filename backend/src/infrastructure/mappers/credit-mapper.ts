@@ -7,3 +7,10 @@ export function toDomainCredit(doc: ICredit) {
         doc.value
     );
 }
+
+export function toDocumentCredit(credit: Credit): ICredit {
+    return {
+        name: credit.name,
+        value: credit.value,
+    } as ICredit;
+}
