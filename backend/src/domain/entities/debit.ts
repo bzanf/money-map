@@ -1,3 +1,4 @@
+import { DebitStatus } from "../enums/debit-status";
 import { Transaction } from "./transaction";
 
 export class Debit extends Transaction {
