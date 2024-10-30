@@ -1,14 +1,13 @@
 import { BillingCycle } from '../../domain/entities/billing-cycle';
+import { BillingCycleDTO } from '../dtos/common/billing-cycle-dto';
 import { CreateBillingCycleDTO } from '../dtos/input/create-billing-cycle-dto';
-import { toDomainCredit } from './credit-mapper';
-import { toDomainDebit } from './debit-mapper';
+import { toDomainCredit, toDTOCredit } from './credit-mapper';
+import { toDomainDebit, toDTODebit } from './debit-mapper';
 
 export function toDomainBillingCycle(dto: CreateBillingCycleDTO) {
     const credits = (dto.credits?.length ?? 0) > 0
         ? dto.credits!.map(toDomainCredit)
         : [];
-
-       
 
     const debts = (dto.debts?.length ?? 0) > 0
         ? dto.debts!.map(toDomainDebit)
@@ -21,4 +20,22 @@ export function toDomainBillingCycle(dto: CreateBillingCycleDTO) {
         credits,
         debts
     );
+}
+
+export function toDTOBillingCycle(billingCycle: BillingCycle): BillingCycleDTO {
+    const credits = billingCycle.credits.length > 0
+        ? billingCycle.credits.map(toDTOCredit)
+        : [];
+
+    const debts = billingCycle.debts.length > 0
+        ? billingCycle.debts!.map(toDTODebit)
+        : [];
+
+    return {
+        name: billingCycle.name,
+        month: billingCycle.month,
+        year: billingCycle.year,
+        credits,
+        debts
+    } as BillingCycleDTO;
 }
