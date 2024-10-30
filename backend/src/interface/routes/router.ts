@@ -3,6 +3,6 @@ import billingCycleRouter from './billing-cycle-routes';
 
 const router = Router();
 
-router.use('/billing-cycle', billingCycleRouter);
+router.use('/billing-cycles', billingCycleRouter);
 
 export default router;
