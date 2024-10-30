@@ -8,11 +8,3 @@ export function toDomainDebit(dto: DebitDTO): Debit {
         dto.status
     );
 }
-
-// export function toDocumentDebit(debit: Debit): IDebit {
-//     return {
-//         name: debit.name,
-//         value: debit.value,
-//         status: debit.status
-//     } as IDebit;
-// }

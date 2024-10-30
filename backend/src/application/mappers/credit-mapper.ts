@@ -7,10 +7,3 @@ export function toDomainCredit(dto: CreditDTO) {
         dto.value
     );
 }
-
-// export function toDocumentCredit(credit: Credit): ICredit {
-//     return {
-//         name: credit.name,
-//         value: credit.value,
-//     } as ICredit;
-// }

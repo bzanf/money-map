@@ -5,6 +5,6 @@ export interface CreateBillingCycleDTO {
     name: string;
     month: number;
     year: number;
-    credits: CreditDTO[];
-    debts: DebitDTO[];
+    credits?: CreditDTO[];
+    debts?: DebitDTO[];
 }
