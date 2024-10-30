@@ -13,8 +13,9 @@ export class MongoBillingCycleRepository implements BillingCycleRepository {
             : [];
     }
 
-    findById(id: string): Promise<BillingCycle | null> {
-        throw new Error("Method not implemented.");
+    async findById(id: string): Promise<BillingCycle | null> {
+        const doc = await BillingCycleModel.findById(id);
+        return doc ? toDomainBillingCycle(doc) : null;
     }
 
     async create(billingCycle: BillingCycle): Promise<BillingCycle> {
@@ -23,12 +24,26 @@ export class MongoBillingCycleRepository implements BillingCycleRepository {
         return toDomainBillingCycle(doc);
     }
 
-    update(billingCycle: BillingCycle): Promise<BillingCycle> {
-        throw new Error("Method not implemented.");
+    async update(billingCycle: BillingCycle): Promise<BillingCycle> {
+        const billingCycleDocument = toDocumentBillingCycle(billingCycle);
+        const updatedDoc = await BillingCycleModel.findByIdAndUpdate(
+            billingCycle.id,
+            billingCycleDocument,
+            { new: true, runValidators: true }
+        );
+
+        if (!updatedDoc) {
+            throw new Error(`BillingCycle with id ${billingCycle.id} not found`);
+        }
+
+        return toDomainBillingCycle(updatedDoc);
     }
 
-    delete(id: string): Promise<void> {
-        throw new Error("Method not implemented.");
+    async delete(id: string): Promise<void> {
+        const deletedDoc = await BillingCycleModel.findByIdAndDelete(id);
+        if (!deletedDoc) {
+            throw new Error(`BillingCycle with id ${id} not found`);
+        }
     }
 
 }
