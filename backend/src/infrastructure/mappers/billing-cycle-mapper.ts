@@ -17,7 +17,8 @@ export function toDomainBillingCycle(doc: IBillingCycle) {
         doc.month,
         doc.year,
         credits,
-        debts
+        debts,
+        doc.id
     );
 }
 
@@ -35,6 +36,7 @@ export function toDocumentBillingCycle(billingCycle: BillingCycle): IBillingCycl
         month: billingCycle.month,
         year: billingCycle.year,
         credits: credits,
-        debts: debts
+        debts: debts,
+        id: billingCycle.id
     } as IBillingCycle;
 }
