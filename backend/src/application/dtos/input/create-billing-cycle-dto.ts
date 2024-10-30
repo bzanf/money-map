@@ -1,10 +1,5 @@
-import { CreditDTO } from "./credit-dto";
-import { DebitDTO } from "./debit-dto";
+import { BillingCycleDTO } from "../common/billing-cycle-dto";
 
-export interface CreateBillingCycleDTO {
-    name: string;
-    month: number;
-    year: number;
-    credits?: CreditDTO[];
-    debts?: DebitDTO[];
+export interface CreateBillingCycleDTO extends BillingCycleDTO {
+
 }
