@@ -33,11 +33,11 @@ export function toBillingCycleResponseDTO(billingCycle: BillingCycle): BillingCy
         : [];
 
     return {
+        id: billingCycle.id,
         name: billingCycle.name,
         month: billingCycle.month,
         year: billingCycle.year,
         credits,
         debts,
-        id: billingCycle.id
     } as BillingCycleResponseDTO;
 }

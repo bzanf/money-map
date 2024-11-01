@@ -1,8 +1,9 @@
 import { BillingCycle } from "../../../../domain/entities/billing-cycle";
-import { NotFoundError } from "../../../../domain/errors/not-found-error";
+import { ValidationError } from "../../../../domain/errors/validation-error";
 import { BillingCycleRepository } from "../../../../domain/repositories/billing-cycle-repository";
 import { toDocumentBillingCycle, toDomainBillingCycle } from "../../../mappers/billing-cycle-mapper";
 import { BillingCycleModel } from "../models/billing-cycle-model";
+import { Error as MongooseError } from "mongoose";
 
 export class MongoBillingCycleRepository implements BillingCycleRepository {
 
@@ -20,14 +21,22 @@ export class MongoBillingCycleRepository implements BillingCycleRepository {
     }
 
     async create(billingCycle: BillingCycle): Promise<BillingCycle> {
-        const billingCycleDocument = toDocumentBillingCycle(billingCycle);
-        const doc = await BillingCycleModel.create(billingCycleDocument);
-        return toDomainBillingCycle(doc);
+        try {
+            const billingCycleDocument = toDocumentBillingCycle(billingCycle);
+            const doc = await BillingCycleModel.create(billingCycleDocument);
+            return toDomainBillingCycle(doc);
+        } catch (error) {
+            if (error instanceof MongooseError.ValidationError) {
+                throw new ValidationError(`Invalid data for creating BillingCycle: ${error.message}`);
+            }
+
+            throw new Error("An unexpected error occurred while creating BillingCycle.");
+        }
     }
 
     async update(billingCycle: BillingCycle): Promise<BillingCycle | null> {
         const billingCycleDocument = toDocumentBillingCycle(billingCycle);
-        
+
         const updatedDoc = await BillingCycleModel.findByIdAndUpdate(
             billingCycle.id,
             billingCycleDocument,
