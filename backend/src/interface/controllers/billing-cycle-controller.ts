@@ -5,6 +5,7 @@ import { GetBillingCycleById } from "../../application/use-cases/get-billing-cyc
 import { UpdateBillingCycle } from "../../application/use-cases/update-billing-cycle";
 import { DeleteBillingCycle } from "../../application/use-cases/delete-billing-cycle";
 import { GetBillingCyclesCount } from "../../application/use-cases/get-billing-cycles-count";
+import { GetBillingCyclesSummary } from "../../application/use-cases/get-billing-cycles-summary";
 
 export class BillingCycleController {
     constructor(
@@ -14,6 +15,7 @@ export class BillingCycleController {
         private updateBillingCycle: UpdateBillingCycle,
         private deleteBillingCycle: DeleteBillingCycle,
         private getBillingCyclesCount: GetBillingCyclesCount,
+        private getBillingCyclesSummary: GetBillingCyclesSummary,
     ) { }
 
     async getAll(req: Request, res: Response) {
@@ -55,6 +57,11 @@ export class BillingCycleController {
     async count(req: Request, res: Response) {
         const billingCyclesCount = await this.getBillingCyclesCount.execute();
         return res.status(200).json(billingCyclesCount);
+    }
+
+    async summary(req: Request, res: Response) {
+        const billingCyclesSummary = await this.getBillingCyclesSummary.execute();
+        return res.status(200).json(billingCyclesSummary);
     }
 
 }

@@ -3,6 +3,7 @@ import { DeleteBillingCycle } from "../../application/use-cases/delete-billing-c
 import { GetAllBillingCycles } from "../../application/use-cases/get-all-billing-cycles";
 import { GetBillingCycleById } from "../../application/use-cases/get-billing-cycle-by-id";
 import { GetBillingCyclesCount } from "../../application/use-cases/get-billing-cycles-count";
+import { GetBillingCyclesSummary } from "../../application/use-cases/get-billing-cycles-summary";
 import { UpdateBillingCycle } from "../../application/use-cases/update-billing-cycle";
 import { BillingCycleController } from "../../interface/controllers/billing-cycle-controller";
 import { MongoBillingCycleRepository } from "../persistence/mongodb/repositories/mongo-billing-cycle-repository";
@@ -20,6 +21,7 @@ export class DependencyContainer {
     private updateBillingCycleUseCase: UpdateBillingCycle;
     private deleteBillingCycleUseCase: DeleteBillingCycle;
     private getBillingCyclesCountUseCase: GetBillingCyclesCount;
+    private getBillingCyclesSummary: GetBillingCyclesSummary;
 
     private constructor() {
         this.billingCycleRepository = new MongoBillingCycleRepository();
@@ -29,6 +31,7 @@ export class DependencyContainer {
         this.updateBillingCycleUseCase = new UpdateBillingCycle(this.billingCycleRepository);
         this.deleteBillingCycleUseCase = new DeleteBillingCycle(this.billingCycleRepository);
         this.getBillingCyclesCountUseCase = new GetBillingCyclesCount(this.billingCycleRepository);
+        this.getBillingCyclesSummary = new GetBillingCyclesSummary(this.billingCycleRepository);
     }
 
     // Method to access the singleton
@@ -49,6 +52,7 @@ export class DependencyContainer {
             this.updateBillingCycleUseCase,
             this.deleteBillingCycleUseCase,
             this.getBillingCyclesCountUseCase,
+            this.getBillingCyclesSummary,
         );
     }
 }
