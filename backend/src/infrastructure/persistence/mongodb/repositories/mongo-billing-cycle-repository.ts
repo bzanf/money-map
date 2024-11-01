@@ -1,4 +1,5 @@
 import { BillingCycle } from "../../../../domain/entities/billing-cycle";
+import { NotFoundError } from "../../../../domain/errors/not-found-error";
 import { BillingCycleRepository } from "../../../../domain/repositories/billing-cycle-repository";
 import { toDocumentBillingCycle, toDomainBillingCycle } from "../../../mappers/billing-cycle-mapper";
 import { BillingCycleModel } from "../models/billing-cycle-model";
@@ -24,26 +25,21 @@ export class MongoBillingCycleRepository implements BillingCycleRepository {
         return toDomainBillingCycle(doc);
     }
 
-    async update(billingCycle: BillingCycle): Promise<BillingCycle> {
+    async update(billingCycle: BillingCycle): Promise<BillingCycle | null> {
         const billingCycleDocument = toDocumentBillingCycle(billingCycle);
+        
         const updatedDoc = await BillingCycleModel.findByIdAndUpdate(
             billingCycle.id,
             billingCycleDocument,
             { new: true, runValidators: true }
         );
 
-        if (!updatedDoc) {
-            throw new Error(`BillingCycle with id ${billingCycle.id} not found`);
-        }
-
-        return toDomainBillingCycle(updatedDoc);
+        return updatedDoc ? toDomainBillingCycle(updatedDoc) : null;
     }
 
-    async delete(id: string): Promise<void> {
+    async delete(id: string): Promise<BillingCycle | null> {
         const deletedDoc = await BillingCycleModel.findByIdAndDelete(id);
-        if (!deletedDoc) {
-            throw new Error(`BillingCycle with id ${id} not found`);
-        }
+        return deletedDoc ? toDomainBillingCycle(deletedDoc) : null;
     }
 
 }
