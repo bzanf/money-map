@@ -51,4 +51,9 @@ export class MongoBillingCycleRepository implements BillingCycleRepository {
         return deletedDoc ? toDomainBillingCycle(deletedDoc) : null;
     }
 
+    async count(): Promise<number> {
+        const docCount = BillingCycleModel.countDocuments();
+        return docCount;
+    }
+
 }

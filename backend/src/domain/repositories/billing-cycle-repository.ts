@@ -6,4 +6,5 @@ export interface BillingCycleRepository {
     create(billingCycle: BillingCycle): Promise<BillingCycle>;
     update(billingCycle: BillingCycle): Promise<BillingCycle | null>;
     delete(id: string): Promise<BillingCycle | null>;
+    count(): Promise<number>;
 }
