@@ -41,13 +41,13 @@ export class BillingCycleController {
         const billingCycleData = { id, ...data };
 
         const billingCycle = await this.updateBillingCycle.execute(billingCycleData);
-        return res.status(201).json(billingCycle);
+        return res.status(200).json(billingCycle);
     }
 
     async delete(req: Request, res: Response) {
         const { id } = req.params;
         const billingCycle = await this.deleteBillingCycle.execute({ id });
-        return res.status(201).json(billingCycle);
+        return res.sendStatus(204);
     }
 
 }
