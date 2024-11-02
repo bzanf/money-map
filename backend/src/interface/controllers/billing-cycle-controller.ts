@@ -6,6 +6,7 @@ import { UpdateBillingCycle } from "../../application/use-cases/update-billing-c
 import { DeleteBillingCycle } from "../../application/use-cases/delete-billing-cycle";
 import { GetBillingCyclesCount } from "../../application/use-cases/get-billing-cycles-count";
 import { GetBillingCyclesSummary } from "../../application/use-cases/get-billing-cycles-summary";
+import { parseQueryNumber } from "../../application/helpers/parse-utils";
 
 export class BillingCycleController {
     constructor(
@@ -19,7 +20,10 @@ export class BillingCycleController {
     ) { }
 
     async getAll(req: Request, res: Response) {
-        const billingCycles = await this.getAllBillingCycles.execute();
+        const skip = parseQueryNumber(req.query.skip);
+        const limit = parseQueryNumber(req.query.limit);
+        
+        const billingCycles = await this.getAllBillingCycles.execute({ skip, limit });
         return res.status(200).json(billingCycles);
     }
 

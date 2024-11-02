@@ -6,9 +6,16 @@ import { BillingCycleModel } from "../models/billing-cycle-model";
 import { Error as MongooseError } from "mongoose";
 
 export class MongoBillingCycleRepository implements BillingCycleRepository {
+    async findAll(skip?: number, limit?: number): Promise<BillingCycle[]> {
+        const query = BillingCycleModel.find();
 
-    async findAll(): Promise<BillingCycle[]> {
-        const docs = await BillingCycleModel.find();
+        if (skip)
+            query.skip(skip);
+
+        if (limit)
+            query.limit(limit);
+
+        const docs = await query;
 
         return docs.length > 0
             ? docs.map(toDomainBillingCycle)
