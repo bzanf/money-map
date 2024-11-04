@@ -1,10 +1,10 @@
 import './App.css'
-import './assets/template/dependencies';
+import Header from './core/components/Header';
 
 function App() {
   return (
     <div className='wrapper'>
-      <h1>App</h1>
+      <Header />
     </div>
   )
 }

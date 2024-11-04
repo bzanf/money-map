@@ -8,8 +8,5 @@ export default defineConfig({
       '@modules': path.resolve(__dirname, 'node_modules')
     }
   },
-  optimizeDeps: {
-    // include: [''],
-  },
   plugins: [react()],
 })
