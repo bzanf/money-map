@@ -1,1 +1,1 @@
-import "ionicons/dist/ionicons.js";
+import "ionicons/dist/esm/ionicons.js";
