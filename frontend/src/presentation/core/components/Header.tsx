@@ -1,17 +1,23 @@
-export default () => (
-    <header className="main-header">
-        <a href="/#/" className="logo">
-            <span className="logo-mini">
-                MM
-            </span>
-            <span className="logo-lg">
-                <i className="fa fa-money"></i>
-                Money Map
-            </span>
-        </a>
-        <nav className="navbar navbar-static-top">
-            <a href="#" className="sidebar-toggle" data-toggle="offcanvas"></a>
-        </nav>
-    </header>
+const Header = () => (
+    <nav className="main-header navbar navbar-expand navbar-white navbar-light">
+        <ul className="navbar-nav">
+            <li className="nav-item">
+                <a className="nav-link" data-widget="pushmenu" href="#" role="button">
+                    <i className="fas fa-bars"></i>
+                </a>
+            </li>
+            <li className="nav-item d-none d-sm-inline-block">
+                <a href="/" className="nav-link">Home</a>
+            </li>
+        </ul>
+        <ul className="navbar-nav ml-auto">
+            <li className="nav-item">
+                <a className="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
+                    <i className="fas fa-th-large"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+);
 
-)
+export default Header;
