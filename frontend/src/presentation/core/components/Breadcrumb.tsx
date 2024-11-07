@@ -7,17 +7,11 @@ interface BreadcrumbProps {
 const Breadcrumb = (props: BreadcrumbProps) => (
     <ol className="breadcrumb float-sm-right">
         {
-            props.pathNames.length > 0
-                ? (
-                    <li className="breadcrumb-item">
-                        <Link to="/">Home</Link>
-                    </li>
-                )
-                : (
-                    <li className="breadcrumb-item active">
-                        Home
-                    </li>
-                )
+            props.pathNames.length > 0 && (
+                <li className="breadcrumb-item">
+                    <Link to="/">Home</Link>
+                </li>
+            )
         }
         {
             props.pathNames.map((value, index) => {
