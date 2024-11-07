@@ -4,7 +4,7 @@ interface ValueBoxProps {
     columns: string;
     color: string;
     icon: string;
-    value: number;
+    value: string;
     text: string;
 }
 
