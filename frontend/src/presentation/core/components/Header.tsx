@@ -8,9 +8,9 @@ const Header = () => (
                     <i className="fas fa-bars"></i>
                 </a>
             </li>
-            <li className="nav-item d-none d-sm-inline-block">
+            {/* <li className="nav-item d-none d-sm-inline-block">
                 <Link to="/" className="nav-link">Home</Link>
-            </li>
+            </li> */}
         </ul>
         <ul className="navbar-nav ml-auto">
             <li className="nav-item">
