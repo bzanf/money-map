@@ -4,7 +4,7 @@ import Header from "../components/Header";
 import ContentHeader from "../components/ContentHeader";
 import Content from "../components/Content";
 
-function Layout() {
+function BaseLayout() {
     return (
         <div className="wrapper">
             <Header />
@@ -18,4 +18,4 @@ function Layout() {
     );
 }
 
-export default Layout;
+export default BaseLayout;
