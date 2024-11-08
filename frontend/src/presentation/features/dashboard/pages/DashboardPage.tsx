@@ -1,11 +1,24 @@
-import { RootState } from "../../../core/store/store";
+import { useEffect } from "react";
 import Row from "../../../shared/components/Row";
 import ValueBox from "../../../shared/components/ValueBox";
-import { useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../../core/store/hooks";
+import { selectSummary, selectSummaryStatus } from "../store/dashboardSlice";
+import { fetchSummary } from "../store/dashboardThunks";
 
 const DashboardPage = () => {
-    const { credit, debit } = useSelector((state: RootState) => state.dashboard.summary);
+    const dispatch = useAppDispatch();
+    const { credit, debit } = useAppSelector(selectSummary);
     const netBalance = credit - debit;
+    const summaryStatus = useAppSelector(selectSummaryStatus);
+
+    useEffect(() => {
+        console.log('useEffect');
+        if (summaryStatus === 'idle') {
+            console.log('fetch');
+            dispatch(fetchSummary());
+        }
+            
+    }, [summaryStatus, dispatch]);
 
     return (
         <Row>
