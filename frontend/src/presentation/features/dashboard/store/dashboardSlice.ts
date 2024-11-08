@@ -27,7 +27,7 @@ const dashboardSlice = createSlice({
     },
     extraReducers: builder => {
         builder
-            .addCase(fetchSummary.pending, (state, action) => {
+            .addCase(fetchSummary.pending, (state) => {
                 state.status = 'pending'
             })
             .addCase(fetchSummary.fulfilled, (state, action) => {

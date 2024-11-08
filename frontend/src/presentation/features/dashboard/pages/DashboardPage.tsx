@@ -12,12 +12,9 @@ const DashboardPage = () => {
     const summaryStatus = useAppSelector(selectSummaryStatus);
 
     useEffect(() => {
-        console.log('useEffect');
         if (summaryStatus === 'idle') {
-            console.log('fetch');
             dispatch(fetchSummary());
         }
-            
     }, [summaryStatus, dispatch]);
 
     return (
