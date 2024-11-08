@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { DependencyContainer } from '../../infrastructure/di/DependencyContainer';
+import { DependencyContainer } from '../../infrastructure/di/dependency-container';
 
 const router = Router();
 const billingCycleController = DependencyContainer.getInstance().getBillingCycleController();
