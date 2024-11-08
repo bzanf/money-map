@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchSummary } from './dashboardThunks';
+import { RootState } from '../../../core/store/store';
 
 interface DashboardState {
     status: 'idle' | 'pending' | 'succeeded' | 'failed';
-    error?: string;
+    error: string | null;
     summary: {
         credit: number;
         debit: number;
@@ -12,9 +13,10 @@ interface DashboardState {
 
 const initialState: DashboardState = {
     status: 'idle',
+    error: null,
     summary: {
-        credit: 550,
-        debit: 300
+        credit: 0,
+        debit: 0
     }
 }
 
@@ -22,9 +24,6 @@ const dashboardSlice = createSlice({
     name: 'dashboard',
     initialState: initialState,
     reducers: {
-        summary(state, action) {
-
-        },
     },
     extraReducers: builder => {
         builder
@@ -33,7 +32,7 @@ const dashboardSlice = createSlice({
             })
             .addCase(fetchSummary.fulfilled, (state, action) => {
                 state.status = 'succeeded'
-                state.summary = {...action.payload };
+                state.summary = { ...action.payload };
             })
             .addCase(fetchSummary.rejected, (state, action) => {
                 state.status = 'failed'
@@ -42,5 +41,9 @@ const dashboardSlice = createSlice({
     }
 })
 
-export const { summary } = dashboardSlice.actions;
+// export const { summary } = dashboardSlice.actions;
 export default dashboardSlice.reducer;
+
+export const selectSummary = (state: RootState) => state.dashboard.summary;
+export const selectSummaryStatus = (state: RootState) => state.dashboard.status;
+export const selectSummaryError = (state: RootState) => state.dashboard.error;
