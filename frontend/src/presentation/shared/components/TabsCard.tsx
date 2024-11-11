@@ -1,6 +1,6 @@
 import { ReactNode, useState } from "react"
 
-interface TabsCardProps {
+export interface TabsCardProps {
    tabs: {
       key: string;
       label: string;
@@ -13,7 +13,7 @@ const TabsCard = (props: TabsCardProps) => {
    const [activeTab, setActiveTab] = useState(tabs[0].key);
 
    return (
-      <div className="card card-primary card-outline">
+      <div className="card card-primary card-outline card-outline-tabs">
          <div className="card-header p-0 border-bottom-0">
             <ul className="nav nav-tabs" role="tablist">
                {
@@ -22,7 +22,8 @@ const TabsCard = (props: TabsCardProps) => {
                         <a
                            className={`nav-link ${activeTab === tab.key ? 'active' : ''}`}
                            id={`tab-label-${tab.key}`}
-                           href="#!"
+                           href={`#tab-content-${tab.key}`}
+                           data-toggle="pill"
                            role="tab"
                            aria-controls={`tab-content-${tab.key}`}
                            aria-selected={activeTab === tab.key}
@@ -37,7 +38,7 @@ const TabsCard = (props: TabsCardProps) => {
          </div>
 
          <div className="card-body">
-            <div>
+            <div className="tab-content">
                {
                   tabs.map((tab) => (
                      <div
