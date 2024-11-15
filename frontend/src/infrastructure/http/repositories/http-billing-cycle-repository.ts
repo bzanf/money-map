@@ -4,6 +4,7 @@ import { BillingCycleRepository } from "../../../domain/repositories/billing-cyc
 import { API_URL } from "../../config/api-config";
 import { BillingCycleResponseDTO } from "../dtos/billing-cycle-response-dto";
 import { toDomainBillingCycle } from "../mappers/billing-cycle-mapper";
+import { SummaryDTO } from "../../../domain/dtos/summary-dto";
 
 export class HttpBillingCycleRepository implements BillingCycleRepository {
 
@@ -30,9 +31,9 @@ export class HttpBillingCycleRepository implements BillingCycleRepository {
     count(): Promise<number> {
         throw new Error("Method not implemented.");
     }
-    
-    async summary(): Promise<{ credit: number; debit: number; }> {
-        const response = await axios.get<{ credit: number; debit: number; }>(`${API_URL}/billing-cycles/summary`);
+
+    async summary(): Promise<SummaryDTO> {
+        const response = await axios.get<SummaryDTO>(`${API_URL}/billing-cycles/summary`);
         return response.data;
     }
 }

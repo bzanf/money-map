@@ -1,3 +1,4 @@
+import { SummaryDTO } from "../dtos/summary-dto";
 import { BillingCycle } from "../entities/billing-cycle";
 
 export interface BillingCycleRepository {
@@ -7,5 +8,5 @@ export interface BillingCycleRepository {
     update(billingCycle: BillingCycle): Promise<BillingCycle | null>;
     delete(id: string): Promise<BillingCycle | null>;
     count(): Promise<number>;
-    summary(): Promise<{ credit: number, debit: number }>;
+    summary(): Promise<SummaryDTO>;
 }
