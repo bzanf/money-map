@@ -27,7 +27,7 @@ const TABS: TabsCardProps['tabs'] = [
 
 const BillingCyclesPage = () => {
     const tabs = useAppSelector(selectTabs);
-    console.log('useAppSelector(selectTabs);');
+    console.log('const tabs = useAppSelector(selectTabs);');
 
     return (
         <div>
