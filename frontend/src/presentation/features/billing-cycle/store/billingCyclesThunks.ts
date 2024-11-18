@@ -7,8 +7,8 @@ import { selectBillingCyclesStatus } from './billingCyclesSlice';
 const useCase = DependencyContainer.getInstance().getAllBillingCycles();
 
 export const fetchBillingCycles = createAsyncThunk(
-    'billing-cycles/fetch',
-    async (params: GetAllBillingCyclesDTO) => {
+    'billing-cycles/fetchAll',
+    async (params?: GetAllBillingCyclesDTO) => {
         const data = await useCase.execute(params);
         return data;
     },

@@ -23,15 +23,15 @@ const billingCyclesSlice = createSlice({
     extraReducers: builder => {
         builder
             .addCase(fetchBillingCycles.pending, (state) => {
-                state.status = 'pending'
+                state.status = 'pending';
             })
             .addCase(fetchBillingCycles.fulfilled, (state, action) => {
-                state.status = 'succeeded'
+                state.status = 'succeeded';
                 state.billingCycles = { ...action.payload };
             })
             .addCase(fetchBillingCycles.rejected, (state, action) => {
-                state.status = 'failed'
-                state.error = action.error.message ?? 'Unknown Error'
+                state.status = 'failed';
+                state.error = action.error.message ?? 'Unknown Error';
             })
     }
 })

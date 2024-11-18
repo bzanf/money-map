@@ -10,7 +10,7 @@ export const store = configureStore({
         dashboard: dashboardReducer,
         billingCycles: billingCyclesReducer,
         billingCyclesTabs: billingCycleTabsReducer,
-    },
+    }
 });
 
 export type AppStore = typeof store;

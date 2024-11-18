@@ -13,8 +13,8 @@ export const fetchSummary = createAsyncThunk(
     },
     {
         condition(_arg, thunkApi) {
-            const summaryStatus = selectSummaryStatus(thunkApi.getState() as RootState);
-            if (summaryStatus !== 'idle')
+            const status = selectSummaryStatus(thunkApi.getState() as RootState);
+            if (status !== 'idle')
                 return false;
         }
     }

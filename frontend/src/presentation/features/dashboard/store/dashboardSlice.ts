@@ -28,15 +28,15 @@ const dashboardSlice = createSlice({
     extraReducers: builder => {
         builder
             .addCase(fetchSummary.pending, (state) => {
-                state.status = 'pending'
+                state.status = 'pending';
             })
             .addCase(fetchSummary.fulfilled, (state, action) => {
-                state.status = 'succeeded'
+                state.status = 'succeeded';
                 state.summary = { ...action.payload };
             })
             .addCase(fetchSummary.rejected, (state, action) => {
-                state.status = 'failed'
-                state.error = action.error.message ?? 'Unknown Error'
+                state.status = 'failed';
+                state.error = action.error.message ?? 'Unknown Error';
             })
     }
 })
