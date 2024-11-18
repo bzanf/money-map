@@ -1,12 +1,13 @@
 import { useAppSelector } from "../../../core/store/hooks";
 import TabsCard, { TabsCardProps } from "../../../shared/components/TabsCard";
+import { ListTab } from "../components/ListTab";
 import { selectTabs } from "../store/tabsSlice";
 
 const TABS: TabsCardProps['tabs'] = [
     {
         key: 'list',
         label: 'List',
-        children: <span>list test</span>
+        children: <ListTab />
     },
     {
         key: 'insert',
@@ -30,10 +31,8 @@ const BillingCyclesPage = () => {
     console.log('const tabs = useAppSelector(selectTabs);');
 
     return (
-        <div>
-            <TabsCard tabs={TABS.filter(x => (tabs as string[]).includes(x.key))}></TabsCard>
-        </div>
-    )
+        <TabsCard tabs={TABS.filter(x => (tabs as string[]).includes(x.key))}></TabsCard>
+    );
 }
 
 export default BillingCyclesPage;
